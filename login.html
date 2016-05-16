@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <meta name="description" content="POC Login">
+    <meta name="author" content="Deloitte">
+    <link rel="icon" href="img/favicon.png">
+
+    <title>Login</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.1/css/fileinput.min.css">
+
+
+
+</head>
+
+<body>
+
+    <section style="height: 100vh; border-bottom: 1px solid black">
+        <div class="container">
+            <div class="col-sm-6 col-sm-offset-3">
+                <form class="form-signin" id="loginForm" style="margin-top: 10em;" method="post" action="" data-confirm="Ready to submit?">
+                    <h2 class="form-signin-heading" style="text-align: center;">Please sign in</h2>
+
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input style="display: block; margin: 0 auto; width: 50%; margin-bottom: 2em;" type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input style="display: block; margin: 0 auto; width: 50%; margin-bottom: 2em;" type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+
+                    <div class="checkbox" style="display: block; margin: 0 auto; width: 50%; margin-bottom: 2em;" >
+                        <label>
+                            <input type="checkbox" value="true" name="rememberMe"> Remember me
+                        </label>
+                    </div>
+
+<!--                     <button style="display: block; margin: 0 auto; width: 50%; margin-bottom: 2em;" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+ -->
+				</form>
+
+				<a href="/index" role="button" class="btn btn-lg btn-primary btn-block" style="display: block; margin: 0 auto; width: 50%; margin-bottom: 2em;">Sign In</a>
+
+            </div>
+        </div>
+    </section>
+    
+</body>
+
+</html>
