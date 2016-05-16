@@ -26,7 +26,7 @@
 
 		<script type="text/javascript">
 			$(function () {
-				$('#datetimepicker1').datetimepicker();
+				$('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
 			});
 		</script>
 
@@ -81,7 +81,7 @@
 					eventStatus: 'in progress',
 					
 					splitType: 'Stock Split',
-					ratio: '2:1',
+					ratio: '2-for-1',
 					date: '2016-05-11',
 					shareType: 'Common B',
 					minPercentSharholders: 80,
@@ -102,7 +102,7 @@
 					eventStatus: 'in progress',
 					
 					splitType: 'Stock Split',
-					ratio: '2:1',
+					ratio: '2-for-1',
 					date: '2016-04-01',
 					shareType: 'Common A',
 					minPercentSharholders: 80,
@@ -123,7 +123,7 @@
 					eventStatus: 'in progress',
 					
 					splitType: 'Stock Split',
-					ratio: '2:1',
+					ratio: '2-for-1',
 					date: '2016-02-29',
 					shareType: 'Common A',
 					minPercentSharholders: 80,
@@ -319,7 +319,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat="event in events">
+										<tr ng-repeat="event in events | orderBy:'-date'">
 											<td> {{event.issuer}}</td>
 											<td> {{event.marketCap | currency}}</td>
 											<td> {{event.sharesOutstanding}}</td>

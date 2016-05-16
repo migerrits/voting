@@ -54,15 +54,14 @@
 					// update the array for display purposes
 					$scope.votes[targetRow].shareholderVoted = true;
 
-					/*
 					if (voted) {
-						$scope.votes[targetRow].votesYes = $scope.votes[targetRow].votesYes + 1;
+						$scope.votes[targetRow].votesYes++;
 					}
 					else {
-						$scope.votes[targetRow].votesno = $scope.votes[targetRow].votesNo + 1;
+						$scope.votes[targetRow].votesNo++;
 					}
-*/
 
+					/*
 					// Add another row just to test more
 					$scope.votes.push(
 					{
@@ -76,18 +75,20 @@
 						
 						eventStatus: 'pending',
 						
-						splitType: '1',
-						ratio: '1',
-						date: '1',
-						shareType: '1',
-						minPercentSharholders:  '1',
-						minPercentYes:  '1',
+						splitType: 'Stock Split',
+						ratio: '2:1',
+						date: '2016-05-11',
+						shareType: 'Common B',
+						minPercentSharholders: 80,
+						minPercentYes: 51,
 						voters: 2000,
 						votesYes: 0,
 						votesNo: 0,
 					
 						shareholderVoted: false
 					});
+					*/
+
 				};
 
 				// which row was clicked for voting
@@ -96,6 +97,30 @@
 				};
 
 			  $scope.votes = [
+				{
+					name: 'Split 0',
+					description: "Test split 0",
+					
+					issuer: 'Dunder Mifflin',
+					marketCap: 20000000,
+					sharesOutstanding: 230000,
+					documents: false,
+					
+					eventStatus: 'in progress',
+					
+					splitType: 'Stock Split',
+					ratio: '2:1',
+					date: '2016-05-31',
+					shareType: 'Common A',
+					minPercentSharholders: 80,
+					minPercentYes: 51,
+					voters: 1200,
+					votesYes: 20,
+					votesNo: 20,
+					
+					shareholderVoted: false
+					
+				},
 				{
 					name: 'Split 1',
 					description: "Test split 1",
@@ -210,7 +235,6 @@
 											<input ng-click="voteFn(false)" type="submit" class="btn btn-info btn-danger" value="No" data-dismiss="modal">
 
 											<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-
 										</div>
 									</div>
 								</form>
@@ -225,53 +249,31 @@
 				<!-- stock voting main list -->
 				<div>
 					<div class="container">
-						<div class="col-sm-18 col-sm-offset-0">
+						<div class="col-sm-10 col-sm-offset-0">
 							<div class="list-group">
 								<table class="table table-hover">
 									<colgroup>
+										<col class="col-md-1">
+										<col class="col-md-1">
+										<col class="col-md-1">
+										<col class="col-md-1">
 										<col class="col-md-2">
-										<col class="col-md-2">
-										<col class="col-md-2">
-										<col class="col-md-2">
-										<col class="col-md-2">
-										<col class="col-md-2">
-										<!-- <col class="col-md-2"> -->
-										<col class="col-md-3">
-										<!-- <col class="col-md-2"> -->
 									</colgroup>
 									<thead>
 										<tr> 
 											<th> Issuer </th>
-<!-- 											<th> Market Cap. </th>
-											<th> Shares Outstanding </th>
- -->											<th> Event</th>
+											<th> Event</th>
 											<th> Date</th>
 											<th> Event Status </th>
-<!-- 											<th> Documents </th>
- -->											<th> Vote</th>
+											<th> Vote</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat="vote in votes">
+										<tr ng-repeat="vote in votes | orderBy:'-date'">
 											<td> {{vote.issuer}}</td>
 											<td> {{vote.ratio}} {{vote.splitType}} </td>
 											<td> {{vote.date | date}}</td>
 											<td> {{vote.eventStatus}}</td>
-<!--
-											<td>
-												<div ng-switch="vote.documents">
-													<div ng-switch-when="true">
-														<a>Yes</a>
-													</div>
-													<div ng-switch-when="false">
-														No
-													</div>
-													<div ng-switch-default>
-														?
-													</div>
-												</div>
-											</td>
--->
 											<td>
 												<div ng-switch on="!vote.shareholderVoted">
 													<span ng-switch-when="true">
@@ -285,9 +287,6 @@
 															<span style="color:red;" ng-switch-default>
 																{{'No: ' + (vote.votesNo / vote.voters * 100 | number:2 ) + "%" }}
 															</span>
-
-															<!-- {{vote.votesYes > vote.votesNo ? 'Yes: ' + ( vote.votesYes / vote.voters * 100 | number:2) + "%" : 'No: ' + (vote.votesNo / vote.voters * 100 | number:2 ) + "%" }} -->
-
 													</span>
 												</div>
 											</td>
