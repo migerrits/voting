@@ -291,7 +291,7 @@
 				<!-- <div ng-controller="splitListCtrl"> -->
 				<div>
 					<div class="container">
-						<div class="col-sm-18 col-sm-offset-0">
+						<div class="col-sm-28 col-sm-offset-0">
 							<div class="list-group">
 								<table class="table table-hover">
 									<colgroup>
@@ -301,7 +301,7 @@
 										<col class="col-md-2">
 										<col class="col-md-2">
 										<col class="col-md-2">
-										<col class="col-md-2">
+										<col class="col-md-1">
 										<col class="col-md-3">
 										<!-- <col class="col-md-2"> -->
 									</colgroup>
@@ -340,7 +340,20 @@
 												</div>
 											</td>
 											<td>
-											{{event.votesYes > event.votesNo ? 'Yes: ' + ( event.votesYes / event.voters * 100 | number:2) : 'No: ' + (event.votesNo / event.voters * 100 | number:2 ) }}
+												<div ng-switch on="event.eventStatus === 'pending'">
+													<span ng-switch-when="true">
+														N/A
+													</span>
+													<span ng-switch-default>
+														<div ng-switch on="event.votesYes > event.votesNo">
+															<span style="color:green;" ng-switch-when="true">
+																{{'Yes: ' + ( event.votesYes / event.voters * 100 | number:2) + "%"}}
+															</span>
+															<span style="color:red;" ng-switch-default>
+																{{'No: ' + (event.votesNo / event.voters * 100 | number:2 ) + "%" }}
+															</span>
+													</span>
+												</div>
 											</td>
 											<!-- <td><input type="radio" id='regular' name="optradio"></td> -->
 										</tr>
